@@ -1,5 +1,5 @@
 ## Title
-Description
+Haskell library with 3d opengl building blocks and fps observer boilerplate
 
 ### Development
 

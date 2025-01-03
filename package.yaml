@@ -1,10 +1,10 @@
-name:               tmplhs
+name:               tridi
 version:            0.1.0.0
 license:            NONE
 author:             Vito Canadi
 maintainer:         vito.canadi@gmail.com
 extra-source-files: CHANGELOG.md
-synopsis:           tmplhs synopsis
+synopsis:           Design square bar constructions
 
 default-extensions:
   - LambdaCase
@@ -16,6 +16,11 @@ default-extensions:
 
 dependencies:
   - base
+  - GLFW-b
+  - gl
+  - GLURaw
+  - containers
+  - orthori
 
 library:
   source-dirs: src
@@ -25,7 +30,12 @@ tests:
     build-depends:
     - base
     - hspec
-    - tmplhs
+    - tridi
     main: Spec.hs
     source-dirs: spec
 version: 0.1.0.0
+
+executable:
+  main: Main.hs
+  dependencites: [ base ]
+  source-dirs: [ ., src, app]

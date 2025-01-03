@@ -1,4 +1,4 @@
-module Tmpl.TmplSpec where
+module Tridi.Spec where
 
 import Test.Hspec
 
