@@ -9,6 +9,7 @@ let
     }) ;
   # local = import <nixpkgs>;
 
+
   # Config to inport external packages
   config.packageOverrides = pkgs: rec { haskellPackages =
     let mkDerivation = expr: pkgs.haskellPackages.mkDerivation (expr // {
@@ -16,9 +17,13 @@ let
           doHaddock = true;
           doCheck = true;
         });
+
     in
     pkgs.haskellPackages.override { overrides = hpkgs: opkgs:{
-         orthori = import ./local/orthori/default.nix { inherit pkgs hpkgs mkDerivation; };
+       orthori = import (builtins.fetchGit {
+         url = "git@github.com:vcanadi/orthori";
+         rev = "007b973dffaafeb16ce0cda50ac4c3f1eda48f98";
+        }) { inherit pkgs hpkgs mkDerivation; };
       };
     };
   };
