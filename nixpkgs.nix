@@ -22,7 +22,7 @@ let
     pkgs.haskellPackages.override { overrides = hpkgs: opkgs:{
        orthori = import (builtins.fetchGit {
          url = "git@github.com:vcanadi/orthori";
-         rev = "007b973dffaafeb16ce0cda50ac4c3f1eda48f98";
+         rev = "8fe9950218280536b6dd171f2a6a823232009119";
         }) { inherit pkgs hpkgs mkDerivation; };
       };
     };
