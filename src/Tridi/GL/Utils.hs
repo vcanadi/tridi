@@ -20,7 +20,7 @@ glParalelopiped v dA dB dC
  >> glColor3d 0.5 0.5 0.5
  >> glBegin GL_QUADS >> vertices (vParalelopiped v dA dB dC) >> glEnd
 
-glColParalelopiped :: (MonadIO m, Real n) => (n, n, n) -> P3 n -> P3 n -> P3 n -> P3 n -> m ()
+glColParalelopiped :: (MonadIO m, Real t, Real n) => (t, t, t) -> P3 n -> P3 n -> P3 n -> P3 n -> m ()
 glColParalelopiped (r,g,b) v dA dB dC
   = glColor3d (realToFrac r) (realToFrac g) (realToFrac b)
  >> glBegin GL_LINES >> vertices (vParalelopiped v dA dB dC) >> glEnd
