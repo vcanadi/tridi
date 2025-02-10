@@ -30,14 +30,14 @@ import System.Exit (exitSuccess)
 import Control.Monad (when, void)
 import Data.IORef (newIORef, IORef, modifyIORef, readIORef)
 
-import Tridi.GL.Observer (Observer (Observer), defObserver, applyInput)
-import Tridi.GL.Input (Input, defInput, pressKey, releaseKey, readInputKey, inputR)
+import Tridi.GL.Observer (Observer (Observer), applyInput)
+import Tridi.GL.Input (Input, defInput, pressKey, releaseKey, readInputKey)
 import Tridi.GL.Utils (lookAt')
 import Data.Bits ((.|.))
 
 -- | Take care of GLFW initialization, creating a window, running main loop and cleaning up afterwards
-bracketGLFWWin :: (Int, Int) -> (Integer -> GLFW.Window -> IO ()) -> IO ()
-bracketGLFWWin (winW, winH) act = do
+bracketGLFWWin :: RealFloat n => (Int, Int) -> Observer n -> (Integer -> GLFW.Window -> IO ()) -> IO ()
+bracketGLFWWin (winW, winH) initObs act = do
   True <- GLFW.init
   GLFW.defaultWindowHints
   winMb <- GLFW.createWindow winW winH "win0" Nothing Nothing
@@ -61,7 +61,7 @@ bracketGLFWWin (winW, winH) act = do
   where
     -- | Main loop (update function)
     loop :: GLFW.Window -> IORef Input -> IO ()
-    loop win inputS = loop' 0 defObserver
+    loop win inputS = loop' 0 initObs
       where
         loop' :: RealFloat n => Integer -> Observer n -> IO ()
         loop' step obs = do
